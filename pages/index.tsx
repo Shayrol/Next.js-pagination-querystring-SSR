@@ -83,3 +83,5 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 export default ServerSidePage;
+
+// 깃 등록
