@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import * as S from "./pagination.styles";
 
 interface IPaginationProps {
   pagination: {
@@ -49,42 +50,25 @@ const Pagination01 = (props: IPaginationProps) => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2 my-8">
+    <S.Wrap>
       {/* 이전 그룹 버튼 */}
-      {start > 1 && (
-        <button
-          onClick={handlePrevGroup}
-          className="px-4 py-2 border rounded hover:bg-gray-100"
-        >
-          이전
-        </button>
-      )}
+      {start > 1 && <S.Button onClick={handlePrevGroup}>이전</S.Button>}
 
       {/* 페이지 번호 버튼들 */}
       {pageNumbers.map((pageNum) => (
-        <button
+        <S.PageNum
           key={pageNum}
           onClick={() => handlePageChange(pageNum)}
-          className={`px-4 py-2 border rounded ${
-            currentPage === pageNum
-              ? "bg-blue-500 text-white"
-              : "hover:bg-gray-100"
-          }`}
+          currentPage={currentPage}
+          pageNum={pageNum}
         >
           {pageNum}
-        </button>
+        </S.PageNum>
       ))}
 
       {/* 다음 그룹 버튼 */}
-      {end < totalPages && (
-        <button
-          onClick={handleNextGroup}
-          className="px-4 py-2 border rounded hover:bg-gray-100"
-        >
-          다음
-        </button>
-      )}
-    </div>
+      {end < totalPages && <S.Button onClick={handleNextGroup}>다음</S.Button>}
+    </S.Wrap>
   );
 };
 

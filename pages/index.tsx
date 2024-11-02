@@ -33,25 +33,29 @@ function ServerSidePage({ data, pageMeta, pagination }: IProps) {
   // const router = useRouter();
 
   return (
-    <>
+    <div className="w-full h-screen flex justify-center items-center">
       <Head>
         <title>{pageMeta.title}</title>
         <meta name="description" content={pageMeta.description} />
       </Head>
-
-      <h2>SSR 테스트</h2>
-      <h3>Server-Side Page</h3>
-
-      {data.map((el) => (
-        <div key={el.id}>
-          <div>userId: {el.userId}</div>
-          <div>title: {el.title}</div>
-          <div>body: {el.body}</div>
+      <div className="w-[1200px]">
+        <div className="flex flex-col gap-3 mb-8">
+          {data.map((el) => (
+            <div
+              key={el.id}
+              className="w-full p-3 rounded-lg shadow-md hover:shadow-lg cursor-pointer"
+            >
+              <div className="text-xl pb-[2px] font-semibold">{el.title}</div>
+              <p className="w-[900px] overflow-hidden whitespace-nowrap truncate">
+                {el.body}
+              </p>
+              <div className="text-xs text-gray-400">userId: {el.userId}</div>
+            </div>
+          ))}
         </div>
-      ))}
-
-      <Pagination01 pagination={pagination} />
-    </>
+        <Pagination01 pagination={pagination} />
+      </div>
+    </div>
   );
 }
 
